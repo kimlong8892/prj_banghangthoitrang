@@ -12,7 +12,25 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+app()->setLocale('vi');
 
-Route::get('/', function () {
-    return view('welcome');
+Route::name('web.')->group(function () {
+    // login, reg, forgot
+    Route::middleware('guest:web')->group(function () {
+        Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+        Route::post('login', 'Auth\LoginController@login');
+        Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+        Route::post('register', 'Auth\RegisterController@register');
+
+        Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+        Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+        Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+        Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
+    });
+    // end login, reg, forgot
+
+    Route::get('/', [\App\Http\Controllers\Web\HomeController::class, 'Index'])->name('home');
+    Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 });
+
+

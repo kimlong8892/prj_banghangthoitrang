@@ -21,6 +21,7 @@ class CreateCustomersTable extends Migration
             $table->string('password');
             $table->string('phone');
             $table->boolean('is_active')->default(true);
+            $table->text('address');
             $table->rememberToken();
             $table->timestamps();
         });
