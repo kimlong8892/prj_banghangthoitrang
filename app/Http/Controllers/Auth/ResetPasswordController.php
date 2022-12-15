@@ -90,7 +90,7 @@ class ResetPasswordController extends Controller
      */
     public function broker(): PasswordBroker
     {
-        return Password::broker('users');
+        return Password::broker('customers');
     }
 
     /**

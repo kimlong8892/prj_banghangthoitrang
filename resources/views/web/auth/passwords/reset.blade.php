@@ -14,7 +14,10 @@
 
                         <div class="form-group row">
                             <label for="email"
-                                   class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                   class="col-md-4 col-form-label text-md-right">
+                                {{ __('E-Mail Address') }}
+                                <font style="color: red;">*</font>
+                            </label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email"
@@ -22,7 +25,7 @@
                                        value="{{ $email ?? old('email') }}">
 
                                 @error('email')
-                                <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback text-danger" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
@@ -31,7 +34,10 @@
 
                         <div class="form-group row">
                             <label for="password"
-                                   class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                   class="col-md-4 col-form-label text-md-right">
+                                {{ __('Password') }}
+                                <font style="color: red;">*</font>
+                            </label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password"
@@ -39,7 +45,7 @@
                                        value="{{ old('password') }}">
 
                                 @error('password')
-                                <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback text-danger" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
@@ -48,14 +54,17 @@
 
                         <div class="form-group row">
                             <label for="confirm_password"
-                                   class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                                   class="col-md-4 col-form-label text-md-right">
+                                {{ __('Confirm Password') }}
+                                <font style="color: red;">*</font>
+                            </label>
 
                             <div class="col-md-6">
                                 <input type="password"
                                        class="form-control @error('confirm_password') is-invalid @enderror"
                                        name="confirm_password" value="{{ old('confirm_password') }}">
                                 @error('confirm_password')
-                                <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback text-danger" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror

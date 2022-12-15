@@ -15,7 +15,10 @@
 
                         <div class="form-group row mt-3">
                             <label for="email"
-                                   class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                   class="col-md-4 col-form-label text-md-right">
+                                {{ __('E-Mail Address') }}
+                                <font style="color: red;">*</font>
+                            </label>
 
                             <div class="col-md-6">
                                 <input id="email" type="text"
@@ -23,7 +26,7 @@
                                        value="{{ old('email') }}">
 
                                 @error('email')
-                                <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback text-danger" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
@@ -32,14 +35,17 @@
 
                         <div class="form-group row mt-3">
                             <label for="password"
-                                   class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                   class="col-md-4 col-form-label text-md-right">
+                                {{ __('Password') }}
+                                <font style="color: red;">*</font>
+                            </label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password"
                                        class="form-control @error('password') is-invalid @enderror" name="password"
                                        value="{{ old('password') }}">
                                 @error('password')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="invalid-feedback text-danger" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror

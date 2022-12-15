@@ -21,7 +21,10 @@
 
                         <div class="form-group row mt-3">
                             <label for="email"
-                                   class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                   class="col-md-4 col-form-label text-md-right">
+                                {{ __('E-Mail Address') }}
+                                <font style="color: red;">*</font>
+                            </label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email"
@@ -29,7 +32,7 @@
                                        value="{{ old('email') }}">
 
                                 @error('email')
-                                <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback text-danger" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
