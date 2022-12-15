@@ -1,0 +1,62 @@
+- customers
+    + id
+    + name
+    + address
+    + email
+    + phone
+    + is_active
+    + password
+- admins
+    + id
+    + name
+    + email
+    + password
+- product_sizes
+    + id
+    + name
+    + value
+- product_colors
+    + id
+    + name
+    + value
+- product_categories
+    + id
+    + name
+    + image
+- products
+    + id
+    + name
+    + description
+    + image
+    + parent_id
+    + quantity
+    + price
+    + category_id
+    + product_size_id
+    + product_color_id
+    + is_active
+- carts
+    + customer_id
+    + product_id
+    + quantity
+- vouchers
+    + id
+    + name
+    + value
+    + date_start
+    + date_end
+    + percent
+- orders
+    + id
+    + note
+    + status
+    + phone
+    + address
+    + customer_id
+    + voucher_id
+    + payment_type
+- product_order
+    + product_id
+    + order_id
+    + quantity
+    + price
