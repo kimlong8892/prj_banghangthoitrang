@@ -53,7 +53,9 @@
             <ul class="header-links pull-right">
                 @if(\Illuminate\Support\Facades\Auth::guard('web')->check())
                     <li>
-                        <a href="#"><i class="fa fa-user-o"></i> {{ \Illuminate\Support\Facades\Auth::guard('web')->user()->name }}</a>
+                        <a href="#"><i
+                                class="fa fa-user-o"></i> {{ \Illuminate\Support\Facades\Auth::guard('web')->user()->name }}
+                        </a>
                     </li>
                     <li>
                         <a href="{{ route('web.logout') }}"><i class="fa fa-user-o"></i> {{ __('logout') }}</a>
@@ -90,7 +92,8 @@
                 <div class="col-md-6">
                     <div class="header-search">
                         <form method="get">
-                            <input class="input" placeholder="Search here" name="search" value="{{ request()->get('search') ?? '' }}">
+                            <input class="input" placeholder="Search here" name="search"
+                                   value="{{ request()->get('search') ?? '' }}">
                             <button class="search-btn">Search</button>
                         </form>
                     </div>
@@ -160,7 +163,6 @@
         @yield('content')
     </div>
 </div>
-
 
 
 <!-- FOOTER -->

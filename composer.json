@@ -14,7 +14,8 @@
         "guzzlehttp/guzzle": "^6.3.1|^7.0.1",
         "laravel/framework": "^7.29",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^2.1"
+        "laravel/ui": "^2.1",
+        "barryvdh/laravel-debugbar": "^3.7"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
@@ -26,7 +27,8 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "platform-check": false
     },
     "extra": {
         "laravel": {

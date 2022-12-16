@@ -45,7 +45,7 @@
                                        class="form-control @error('password') is-invalid @enderror" name="password"
                                        value="{{ old('password') }}">
                                 @error('password')
-                                    <span class="invalid-feedback text-danger" role="alert">
+                                <span class="invalid-feedback text-danger" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror

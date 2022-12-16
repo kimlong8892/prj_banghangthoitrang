@@ -4,15 +4,13 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class Email implements Rule
-{
+class Email implements Rule {
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         //
     }
 
@@ -23,8 +21,7 @@ class Email implements Rule
      * @param mixed $value
      * @return bool
      */
-    public function passes($attribute, $value)
-    {
+    public function passes($attribute, $value) {
         return filter_var($value, FILTER_VALIDATE_EMAIL);
     }
 
@@ -33,8 +30,7 @@ class Email implements Rule
      *
      * @return string
      */
-    public function message()
-    {
+    public function message() {
         return __('email in valid format');
     }
 }

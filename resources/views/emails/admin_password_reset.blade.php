@@ -25,6 +25,7 @@
             url('http://assets.vervewine.com/fonts/FlamaCond-Medium.woff') format('woff'),
             url('http://assets.vervewine.com/fonts/FlamaCond-Medium.ttf') format('truetype');
         }
+
         @font-face {
             font-family: 'Muli';
             font-weight: 100;
@@ -34,10 +35,12 @@
             url('http://assets.vervewine.com/fonts/muli-regular.woff') format('woff'),
             url('http://assets.vervewine.com/fonts/muli-regular.ttf') format('truetype');
         }
+
         .address-description a {
             color: #000000;
             text-decoration: none;
         }
+
         @media (max-device-width: 480px) {
             .vervelogoplaceholder {
                 height: 83px;
@@ -47,13 +50,14 @@
     <!--<![endif]-->
     <!--[if (gte mso 9)|(IE)]>
     <style type="text/css">
-    .address-description a {
-        color: #000000;
-        text-decoration: none;
-    }
-    table {
-        border-collapse: collapse;
-    }
+        .address-description a {
+            color: #000000;
+            text-decoration: none;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
     </style>
     <![endif]-->
 </head>
@@ -62,9 +66,9 @@
       style="margin-top:0 ;margin-bottom:0 ;margin-right:0 ;margin-left:0 ;padding-top:0px;padding-bottom:0px;padding-right:0px;padding-left:0px;background-color:#e1e5e8;">
 <!--[if gte mso 9]>
 <center>
-<table width="600" cellpadding="0" cellspacing="0">
-    <tr>
-        <td valign="top">
+    <table width="600" cellpadding="0" cellspacing="0">
+        <tr>
+            <td valign="top">
 <![endif]-->
 <center
     style="width:100%;table-layout:fixed;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;background-color:#e1e5e8;">
@@ -88,9 +92,9 @@
                     style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;background-color:#ffffff;">
                     <!--[if gte mso 9]>
                     <center>
-                    <table width="80%" cellpadding="20" cellspacing="30">
-                        <tr>
-                            <td valign="top">
+                        <table width="80%" cellpadding="20" cellspacing="30">
+                            <tr>
+                                <td valign="top">
                     <![endif]-->
                     <table style="border-spacing:0;" width="100%">
                         <tbody>

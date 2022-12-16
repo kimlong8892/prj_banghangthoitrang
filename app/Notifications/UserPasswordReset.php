@@ -6,8 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class UserPasswordReset extends Notification
-{
+class UserPasswordReset extends Notification {
     use Queueable;
 
     public $name;
@@ -19,8 +18,7 @@ class UserPasswordReset extends Notification
      *
      * @return void
      */
-    public function __construct($name, $email, $token)
-    {
+    public function __construct($name, $email, $token) {
         $this->name = $name;
         $this->email = $email;
         $this->token = $token;
@@ -32,8 +30,7 @@ class UserPasswordReset extends Notification
      * @param mixed $notifiable
      * @return array
      */
-    public function via($notifiable): array
-    {
+    public function via($notifiable): array {
         return ['mail'];
     }
 
@@ -43,8 +40,7 @@ class UserPasswordReset extends Notification
      * @param mixed $notifiable
      * @return MailMessage
      */
-    public function toMail($notifiable): MailMessage
-    {
+    public function toMail($notifiable): MailMessage {
         return (new MailMessage)->subject('Test')
             ->view('emails.user_password_reset', [
                 'name' => $this->name,
@@ -58,8 +54,7 @@ class UserPasswordReset extends Notification
      * @param mixed $notifiable
      * @return array
      */
-    public function toArray($notifiable): array
-    {
+    public function toArray($notifiable): array {
         return [
             //
         ];

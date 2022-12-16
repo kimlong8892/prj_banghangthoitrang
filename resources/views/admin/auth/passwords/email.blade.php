@@ -9,7 +9,7 @@
                 </div>
                 <h3 class="text-center mb-4">{{ __('forgot password') }}</h3>
                 @error('error_password_reset')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 @if(session()->has('success'))
                     <div class="alert alert-success">
@@ -19,7 +19,9 @@
                 <form action="{{ route('admin.password.email') }}" class="login-form" method="POST">
                     @csrf
                     <div class="form-group">
-                        <input type="text" name="email" class="form-control rounded-left @error('email') is-invalid @enderror" placeholder="{{ __('email') }}">
+                        <input type="text" name="email"
+                               class="form-control rounded-left @error('email') is-invalid @enderror"
+                               placeholder="{{ __('email') }}">
                         @error('email')
                         <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

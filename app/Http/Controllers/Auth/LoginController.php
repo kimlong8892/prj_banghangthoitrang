@@ -12,8 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
-class LoginController extends Controller
-{
+class LoginController extends Controller {
     /*
     |--------------------------------------------------------------------------
     | Login Controller
@@ -39,8 +38,7 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('guest')->except('logout');
     }
 
@@ -51,8 +49,7 @@ class LoginController extends Controller
      * @return void
      *
      */
-    protected function validateLogin(Request $request)
-    {
+    protected function validateLogin(Request $request) {
         $request->validate([
             $this->username() => 'required|string',
             'password' => 'required|string',
@@ -68,8 +65,7 @@ class LoginController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function logout(Request $request): RedirectResponse
-    {
+    public function logout(Request $request): RedirectResponse {
         $this->guard()->logout();
 
         return redirect()->route('web.login');
@@ -80,20 +76,18 @@ class LoginController extends Controller
      *
      * @return StatefulGuard
      */
-    protected function guard(): StatefulGuard
-    {
+    protected function guard(): StatefulGuard {
         return Auth::guard('web');
     }
 
     /**
      * Handle a login request to the application.
      *
-     * @param  Request  $request
+     * @param Request $request
      * @return RedirectResponse
      *
      */
-    public function login(Request $request): RedirectResponse
-    {
+    public function login(Request $request): RedirectResponse {
         $this->validateLogin($request);
 
         $credentials = $request->only('email', 'password');
@@ -110,8 +104,7 @@ class LoginController extends Controller
      *
      * @return View
      */
-    public function showLoginForm(): View
-    {
+    public function showLoginForm(): View {
         return view('web.auth.login');
     }
 }

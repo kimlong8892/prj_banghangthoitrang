@@ -4,15 +4,13 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class CaptchaGoogle implements Rule
-{
+class CaptchaGoogle implements Rule {
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         //
     }
 
@@ -23,8 +21,7 @@ class CaptchaGoogle implements Rule
      * @param mixed $value
      * @return bool
      */
-    public function passes($attribute, $value): bool
-    {
+    public function passes($attribute, $value): bool {
         $secret = env('RECAPTCHA_SECRET_KEY');
         $captcha = trim($_POST['g-recaptcha-response']);
         $ip = $_SERVER['REMOTE_ADDR'];
@@ -51,8 +48,7 @@ class CaptchaGoogle implements Rule
      *
      * @return string
      */
-    public function message()
-    {
+    public function message() {
         return __('error captcha');
     }
 }

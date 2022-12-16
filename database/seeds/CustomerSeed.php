@@ -2,15 +2,13 @@
 
 use Illuminate\Database\Seeder;
 
-class CustomerSeed extends Seeder
-{
+class CustomerSeed extends Seeder {
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run()
-    {
+    public function run() {
         for ($i = 0; $i < 10; ++$i) {
             \Illuminate\Support\Facades\DB::table('customers')
                 ->insertOrIgnore([

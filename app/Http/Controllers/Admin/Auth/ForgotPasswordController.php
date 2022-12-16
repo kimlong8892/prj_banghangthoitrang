@@ -11,8 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\View\View;
 
-class ForgotPasswordController extends Controller
-{
+class ForgotPasswordController extends Controller {
     /*
     |--------------------------------------------------------------------------
     | Password Reset Controller
@@ -32,8 +31,7 @@ class ForgotPasswordController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function sendResetLinkEmail(Request $request): RedirectResponse
-    {
+    public function sendResetLinkEmail(Request $request): RedirectResponse {
         $this->validateEmail($request);
 
         // We will send the password reset link to this user. Once we have attempted
@@ -61,8 +59,7 @@ class ForgotPasswordController extends Controller
      *
      * @return View
      */
-    public function showLinkRequestForm(): View
-    {
+    public function showLinkRequestForm(): View {
         return view('admin.auth.passwords.email');
     }
 
@@ -72,8 +69,7 @@ class ForgotPasswordController extends Controller
      * @param Request $request
      * @return void
      */
-    protected function validateEmail(Request $request)
-    {
+    protected function validateEmail(Request $request) {
         $request->validate([
             'email' => 'required|string',
             'g-recaptcha-response' => ['required', new CaptchaGoogle()],
@@ -87,8 +83,7 @@ class ForgotPasswordController extends Controller
      *
      * @return PasswordBroker
      */
-    public function broker(): PasswordBroker
-    {
+    public function broker(): PasswordBroker {
         return Password::broker('admins');
     }
 }

@@ -8,7 +8,7 @@
 
                 <div class="card-body">
                     @error('error_password_reset')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                     @if(session()->has('success'))
                         <div class="alert alert-success">

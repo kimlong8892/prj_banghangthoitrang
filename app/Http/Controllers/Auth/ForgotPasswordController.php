@@ -11,8 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\View\View;
 
-class ForgotPasswordController extends Controller
-{
+class ForgotPasswordController extends Controller {
     /*
     |--------------------------------------------------------------------------
     | Password Reset Controller
@@ -31,8 +30,7 @@ class ForgotPasswordController extends Controller
      *
      * @return View
      */
-    public function showLinkRequestForm(): View
-    {
+    public function showLinkRequestForm(): View {
         return view('web.auth.passwords.email');
     }
 
@@ -42,8 +40,7 @@ class ForgotPasswordController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function sendResetLinkEmail(Request $request): RedirectResponse
-    {
+    public function sendResetLinkEmail(Request $request): RedirectResponse {
         $this->validateEmail($request);
 
         // We will send the password reset link to this user. Once we have attempted
@@ -68,28 +65,26 @@ class ForgotPasswordController extends Controller
     }
 
     /**
-     * Get the broker to be used during password reset.
-     *
-     * @return PasswordBroker
-     */
-    public function broker(): PasswordBroker
-    {
-        return Password::broker('customers');
-    }
-
-    /**
      * Validate the email for the given request.
      *
      * @param Request $request
      * @return void
      */
-    protected function validateEmail(Request $request)
-    {
+    protected function validateEmail(Request $request) {
         $request->validate([
             'email' => 'required|string',
             'g-recaptcha-response' => ['required', new CaptchaGoogle()],
         ], [
             'required' => __('required error')
         ]);
+    }
+
+    /**
+     * Get the broker to be used during password reset.
+     *
+     * @return PasswordBroker
+     */
+    public function broker(): PasswordBroker {
+        return Password::broker('users');
     }
 }

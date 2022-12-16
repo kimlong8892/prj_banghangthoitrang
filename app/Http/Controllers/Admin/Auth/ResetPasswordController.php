@@ -17,8 +17,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
-class ResetPasswordController extends Controller
-{
+class ResetPasswordController extends Controller {
     /*
     |--------------------------------------------------------------------------
     | Password Reset Controller
@@ -45,11 +44,10 @@ class ResetPasswordController extends Controller
      * If no token is present, display the link request form.
      *
      * @param Request $request
-     * @param  string|null  $token
+     * @param string|null $token
      * @return Factory|View
      */
-    public function showResetForm(Request $request, $token = null)
-    {
+    public function showResetForm(Request $request, $token = null) {
         return view('admin.auth.passwords.reset')->with(
             ['token' => $token, 'email' => $request->get('email')]
         );
@@ -60,8 +58,7 @@ class ResetPasswordController extends Controller
      *
      * @return array
      */
-    protected function rules(): array
-    {
+    protected function rules(): array {
         return [
             'email' => ['required', new Email()],
             'password' => ['required'],
@@ -75,8 +72,7 @@ class ResetPasswordController extends Controller
      *
      * @return array
      */
-    protected function validationErrorMessages(): array
-    {
+    protected function validationErrorMessages(): array {
         return [
             'required' => __('required error'),
             'confirm_password.same' => __('password confirmed error')
@@ -88,8 +84,7 @@ class ResetPasswordController extends Controller
      *
      * @return PasswordBroker
      */
-    public function broker(): PasswordBroker
-    {
+    public function broker(): PasswordBroker {
         return Password::broker('admins');
     }
 
@@ -100,8 +95,7 @@ class ResetPasswordController extends Controller
      * @return RedirectResponse|JsonResponse
      * @throws ValidationException
      */
-    public function reset(Request $request)
-    {
+    public function reset(Request $request) {
         $request->validate($this->rules(), $this->validationErrorMessages());
 
         // Here we will attempt to reset the user's password. If it is successful we

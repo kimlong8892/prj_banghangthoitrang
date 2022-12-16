@@ -6,8 +6,7 @@ use App\Notifications\AdminPasswordReset;
 use Illuminate\Foundation\Auth\User as Authenticate;
 use Illuminate\Notifications\Notifiable;
 
-class Admin extends Authenticate
-{
+class Admin extends Authenticate {
     use Notifiable;
 
     /**
@@ -40,11 +39,10 @@ class Admin extends Authenticate
     /**
      * Send the password reset notification.
      *
-     * @param  string  $token
+     * @param string $token
      * @return void
      */
-    public function sendPasswordResetNotification($token)
-    {
+    public function sendPasswordResetNotification($token) {
         $this->notify(new AdminPasswordReset($this->getAttribute('name'), $this->getAttribute('email'), $token));
     }
 }

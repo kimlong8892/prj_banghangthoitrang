@@ -14,17 +14,21 @@
                 <form action="{{ route('admin.login') }}" class="login-form" method="POST">
                     @csrf
                     <div class="form-group">
-                        <input type="text" name="email" class="form-control rounded-left @error('email') is-invalid @enderror" placeholder="{{ __('email') }}">
+                        <input type="text" name="email"
+                               class="form-control rounded-left @error('email') is-invalid @enderror"
+                               placeholder="{{ __('email') }}" value="{{ env('DEFAULT_ADMIN_EMAIL', '') }}">
                         @error('email')
-                            <span class="invalid-feedback" role="alert">
+                        <span class="invalid-feedback text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <input type="password" name="password" class="form-control rounded-left @error('password') is-invalid @enderror" placeholder="{{ __('password') }}">
+                        <input type="password" name="password"
+                               class="form-control rounded-left @error('password') is-invalid @enderror"
+                               placeholder="{{ __('password') }}" value="{{ env('DEFAULT_ADMIN_PASSWORD', '') }}">
                         @error('password')
-                            <span class="invalid-feedback" role="alert">
+                        <span class="invalid-feedback text-danger" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror

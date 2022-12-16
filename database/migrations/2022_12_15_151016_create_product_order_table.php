@@ -4,15 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductOrderTable extends Migration
-{
+class CreateProductOrderTable extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('product_order', function (Blueprint $table) {
             $table->primary(['order_id', 'product_id']);
 
@@ -32,8 +30,7 @@ class CreateProductOrderTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('product_order');
     }
 }

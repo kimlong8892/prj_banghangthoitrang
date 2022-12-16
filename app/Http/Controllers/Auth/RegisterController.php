@@ -14,8 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
-class RegisterController extends Controller
-{
+class RegisterController extends Controller {
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -41,19 +40,17 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('guest:web');
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data
      * @return Customer
      */
-    protected function create(array $data): Customer
-    {
+    protected function create(array $data): Customer {
         return Customer::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -68,8 +65,7 @@ class RegisterController extends Controller
      *
      * @return View
      */
-    public function showRegistrationForm(): View
-    {
+    public function showRegistrationForm(): View {
         return view('web.auth.register');
     }
 
@@ -78,8 +74,7 @@ class RegisterController extends Controller
      *
      * @return StatefulGuard
      */
-    protected function guard(): StatefulGuard
-    {
+    protected function guard(): StatefulGuard {
         return Auth::guard('web');
     }
 
@@ -89,8 +84,7 @@ class RegisterController extends Controller
      * @param array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data): \Illuminate\Contracts\Validation\Validator
-    {
+    protected function validator(array $data): \Illuminate\Contracts\Validation\Validator {
         return Validator::make($data, [
             'name' => ['required'],
             'email' => ['required', new Email(), 'unique:customers,email'],

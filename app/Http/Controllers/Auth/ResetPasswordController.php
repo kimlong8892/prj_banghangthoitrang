@@ -16,8 +16,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
-class ResetPasswordController extends Controller
-{
+class ResetPasswordController extends Controller {
     /*
     |--------------------------------------------------------------------------
     | Password Reset Controller
@@ -47,50 +46,10 @@ class ResetPasswordController extends Controller
      * @param string|null $token
      * @return Factory|View
      */
-    public function showResetForm(Request $request, $token = null)
-    {
+    public function showResetForm(Request $request, $token = null) {
         return view('web.auth.passwords.reset')->with(
             ['token' => $token, 'email' => $request->get('email')]
         );
-    }
-
-    /**
-     * Get the password reset validation rules.
-     *
-     * @return array
-     */
-    protected function rules(): array
-    {
-        return [
-            'email' => ['required', new Email()],
-            'password' => ['required'],
-            'g-recaptcha-response' => ['required', new CaptchaGoogle()],
-            'confirm_password' => 'required|same:password'
-        ];
-    }
-
-    /**
-     * Get the password reset validation error messages.
-     *
-     * @return array
-     */
-    protected function validationErrorMessages(): array
-    {
-        return [
-            'required' => __('required error'),
-            'confirm_password.same' => __('password confirmed error')
-        ];
-    }
-
-
-    /**
-     * Get the broker to be used during password reset.
-     *
-     * @return PasswordBroker
-     */
-    public function broker(): PasswordBroker
-    {
-        return Password::broker('customers');
     }
 
     /**
@@ -100,8 +59,7 @@ class ResetPasswordController extends Controller
      * @return RedirectResponse|JsonResponse
      * @throws ValidationException
      */
-    public function reset(Request $request)
-    {
+    public function reset(Request $request) {
         $request->validate($this->rules(), $this->validationErrorMessages());
 
         // Here we will attempt to reset the user's password. If it is successful we
@@ -124,5 +82,40 @@ class ResetPasswordController extends Controller
         } else {
             return $this->sendResetFailedResponse($request, $response);
         }
+    }
+
+    /**
+     * Get the password reset validation rules.
+     *
+     * @return array
+     */
+    protected function rules(): array {
+        return [
+            'email' => ['required', new Email()],
+            'password' => ['required'],
+            'g-recaptcha-response' => ['required', new CaptchaGoogle()],
+            'confirm_password' => 'required|same:password'
+        ];
+    }
+
+    /**
+     * Get the password reset validation error messages.
+     *
+     * @return array
+     */
+    protected function validationErrorMessages(): array {
+        return [
+            'required' => __('required error'),
+            'confirm_password.same' => __('password confirmed error')
+        ];
+    }
+
+    /**
+     * Get the broker to be used during password reset.
+     *
+     * @return PasswordBroker
+     */
+    public function broker(): PasswordBroker {
+        return Password::broker('users');
     }
 }
