@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 
 class LoginController extends Controller {
@@ -90,13 +91,18 @@ class LoginController extends Controller {
     public function login(Request $request): RedirectResponse {
         $this->validateLogin($request);
 
-        $credentials = $request->only('email', 'password');
+        try {
+            $credentials = $request->only('email', 'password');
 
-        if ($this->guard()->attempt($credentials, true)) {
-            return redirect()->route('web.home');
+            if ($this->guard()->attempt($credentials, true)) {
+                return redirect()->route('web.home');
+            }
+
+            return redirect()->back()->with('error', __('login failed'));
+        } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
+            return redirect()->back()->with('error', $exception->getMessage());
         }
-
-        return redirect()->back()->withErrors(['error_login' => __('login failed')]);
     }
 
     /**
