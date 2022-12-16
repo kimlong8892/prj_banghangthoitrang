@@ -13,7 +13,7 @@ class RouteServiceProvider extends ServiceProvider {
      *
      * @var string
      */
-    protected $namespace = 'App\Http\Controllers';
+    protected $namespace = '';
 
     /**
      * The path to the "home" route for your application.
@@ -82,7 +82,7 @@ class RouteServiceProvider extends ServiceProvider {
      */
     protected function mapAdminRoutes() {
         Route::middleware('web')
-            ->prefix('admin')
+            ->prefix(env('ADMIN_DIR', 'admin'))
             ->namespace($this->namespace)
             ->group(base_path('routes/admin.php'));
     }

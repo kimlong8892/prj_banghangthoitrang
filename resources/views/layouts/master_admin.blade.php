@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -37,31 +35,49 @@
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">{{ __('Admin') }} - {{ env('APP_NAME') }}</div>
+            <div class="sidebar-brand-text mx-3 small font-weight-bold">{{ __('Admin') }} - {{ env('APP_NAME') }}</div>
         </a>
 
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
-            <a class="nav-link" href="{{ route('admin.home') }}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>{{ __('Dashboard') }}</span></a>
-        </li>
+        @php
+            $listAdminMenu = config('admin_menu');
+        @endphp
 
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-               aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Product Management</span>
-            </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('admin.product.index') }}">{{ __('List Product') }}</a>
-                    <a class="collapse-item" href="{{ route('admin.product.create') }}">{{ __('Add Product') }}</a>
-                </div>
-            </div>
-        </li>
+        @if(!empty($listAdminMenu) && is_array($listAdminMenu))
+            @foreach($listAdminMenu as $keyMenuAdmin => $menuAdmin)
+                @if(empty($menuAdmin['list_child']))
+                    <li class="nav-item @if($menuAdmin['route'] == \Request::route()->getName()) active @endif">
+                        <a class="nav-link" href="{{ route($menuAdmin['route']) }}">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>{{ __($menuAdmin['title'] ?? '') }}</span></a>
+                    </li>
+                @else
+                    @php
+                        $isCurrentRoute = false;
 
+                        foreach ($menuAdmin['list_child'] as $menuAdminChild) {
+                            if ($menuAdminChild['route'] == \Request::route()->getName()) {
+                                $isCurrentRoute = true;
+                            }
+                        }
+                    @endphp
+
+                    <li class="nav-item @if($isCurrentRoute) active @endif">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMenuAdmin-{{ $keyMenuAdmin }}"
+                           aria-expanded="true" aria-controls="collapseMenuAdmin-{{ $keyMenuAdmin }}">
+                            <i class="fas fa-fw fa-cog"></i>
+                            <span>{{ __($menuAdmin['title'] ?? '') }}</span>
+                        </a>
+                        <div id="collapseMenuAdmin-{{ $keyMenuAdmin }}" class="collapse @if($isCurrentRoute) show @endif" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                @foreach($menuAdmin['list_child'] as $menuAdminChild)
+                                    <a class="collapse-item @if($menuAdminChild['route'] == \Request::route()->getName()) active @endif" href="{{ route($menuAdminChild['route']) }}">{{ __($menuAdminChild['title'] ?? '') }}</a>
+                                @endforeach
+                            </div>
+                        </div>
+                    </li>
+                @endif
+            @endforeach
+        @endif
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -89,7 +105,7 @@
                 <form
                     class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="{{ __('input search') }}..."
                                aria-label="Search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="button">

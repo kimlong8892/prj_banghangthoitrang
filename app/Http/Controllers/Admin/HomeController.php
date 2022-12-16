@@ -10,10 +10,24 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller {
     public function Index(Request $request) {
-        $totalCustomer = Customer::all()->count();
-        $totalProduct = Product::where('parent_id', null)->get()->count();
-        $totalOrder = Order::all()->count();
+        $listTotalReport = [
+            [
+                'title' => 'customer total',
+                'value' => Customer::all()->count(),
+                'icon' => 'fa-user-alt'
+            ],
+            [
+                'title' => 'product total',
+                'value' => Product::where('parent_id', null)->get()->count(),
+                'icon' => 'fa-book'
+            ],
+            [
+                'title' => 'order total',
+                'value' => Order::all()->count(),
+                'icon' => 'fa-book'
+            ]
+        ];
 
-        return view('admin.home.index', compact('totalCustomer', 'totalProduct', 'totalOrder'));
+        return view('admin.home.index', compact('listTotalReport'));
     }
 }

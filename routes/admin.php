@@ -26,7 +26,7 @@ Route::name('admin.')->group(function () {
 
     // need auth
     Route::middleware('auth:admin')->group(function () {
-        Route::get('/index', 'Admin\HomeController@index')->name('home');
+        Route::get('/index', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home');
         // product
         Route::resource('product', \App\Http\Controllers\Admin\ProductController::class);
         Route::get('logout', 'Admin\Auth\LoginController@logout')->name('logout');
